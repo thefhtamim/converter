@@ -1,0 +1,15 @@
+# pip install pytransloadit
+from transloadit import client
+
+tl = client.Transloadit('b1f2b30825134b42bb8751bf55bff6b5', '5bb6d424476bf9cadd1f4f33fb4af439ddd339ac')
+assembly = tl.new_assembly({'template_id': 'b0bdb3b56cdf45cfaa2798e8ef777ea0'})
+
+# These Instructions do not require uploads, otherwise:
+# assembly.add_file(open('./', 'rb'))
+# Start the Assembly
+assembly_response = assembly.create(retries=5, wait=True)
+
+print assembly_response.data.get('assembly_id')
+
+# or
+print assembly_response.data['assembly_id']
